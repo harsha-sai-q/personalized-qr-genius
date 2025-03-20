@@ -5,7 +5,7 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { cn } from '@/lib/utils';
 import { QrCode } from 'lucide-react';
 
-export type QRStyleType = 'standard' | 'dots' | 'rounded' | 'classy' | 'edge-cut';
+export type QRStyleType = 'standard';
 
 interface QRStyleSelectorProps {
   selectedStyle: QRStyleType;
@@ -30,61 +30,6 @@ const QRStyleSelector: React.FC<QRStyleSelectorProps> = ({
               i === 0 || i === 2 || i === 6 || i === 8 ? "rounded-none" : ""
             )}></div>
           ))}
-        </div>
-      )
-    },
-    { 
-      id: 'dots', 
-      label: 'Dots', 
-      icon: (
-        <div className="w-6 h-6 grid grid-cols-3 grid-rows-3 gap-0.5">
-          {[...Array(9)].map((_, i) => (
-            <div key={i} className={cn(
-              "bg-current rounded-full",
-              i === 0 || i === 2 || i === 6 || i === 8 ? "rounded-full" : ""
-            )}></div>
-          ))}
-        </div>
-      )
-    },
-    { 
-      id: 'rounded', 
-      label: 'Rounded', 
-      icon: (
-        <div className="w-6 h-6 grid grid-cols-3 grid-rows-3 gap-0.5">
-          {[...Array(9)].map((_, i) => (
-            <div key={i} className={cn(
-              "bg-current rounded-md",
-              i === 0 || i === 2 || i === 6 || i === 8 ? "rounded-md" : ""
-            )}></div>
-          ))}
-        </div>
-      )
-    },
-    { 
-      id: 'classy', 
-      label: 'Classy', 
-      icon: (
-        <div className="w-6 h-6 grid grid-cols-3 grid-rows-3 gap-0.5">
-          {[...Array(9)].map((_, i) => (
-            <div key={i} className={cn(
-              "bg-current",
-              (i === 0) ? "rounded-tl-lg" : "",
-              (i === 2) ? "rounded-tr-lg" : "",
-              (i === 6) ? "rounded-bl-lg" : "",
-              (i === 8) ? "rounded-br-lg" : ""
-            )}></div>
-          ))}
-        </div>
-      )
-    },
-    { 
-      id: 'edge-cut', 
-      label: 'Edge Cut', 
-      icon: (
-        <div className="w-6 h-6 relative">
-          <QrCode className="w-6 h-6" />
-          <div className="absolute inset-0 border-2 border-current rounded-lg"></div>
         </div>
       )
     }

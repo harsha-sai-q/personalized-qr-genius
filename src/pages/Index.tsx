@@ -5,7 +5,9 @@ import Footer from '@/components/Footer';
 import QRCodeGenerator from '@/components/QRCodeGenerator';
 import Features from '@/components/Features';
 import AboutSection from '@/components/AboutSection';
-import { QrCode } from 'lucide-react';
+import { QrCode, Scan } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 const Index = () => {
   return (
@@ -28,6 +30,15 @@ const Index = () => {
               Generate personalized QR codes with logos, colors, and shapes. 
               No sign up required - it's completely free.
             </p>
+            
+            <div className="flex justify-center mb-8">
+              <Link to="/scan">
+                <Button variant="outline" className="gap-2">
+                  <Scan className="h-4 w-4" />
+                  Scan QR Code
+                </Button>
+              </Link>
+            </div>
           </div>
           
           <QRCodeGenerator />
