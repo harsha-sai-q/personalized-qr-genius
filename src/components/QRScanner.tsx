@@ -220,7 +220,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanResult, onBack }) => {
                   playsInline 
                   className={cn(
                     "w-full h-full object-cover",
-                    !isCameraActive && "hidden"
+                    { "hidden": !isCameraActive }
                   )} 
                 />
                 <canvas 
