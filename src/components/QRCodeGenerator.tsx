@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -6,7 +5,6 @@ import { QrCode, Link as LinkIcon, ExternalLink } from 'lucide-react';
 import { toast } from 'sonner';
 import { DEFAULT_QR_OPTIONS, QROptionsType, generateQRCode, generateQRCodeSVG, addLogoToQRCode, downloadQRCode, isValidUrl, generateSafeScanBadge } from '@/lib/qr-utils';
 import { cn } from '@/lib/utils';
-import { QRStyleType } from './QRStyleSelector';
 import { QRContentType } from './QRTypeSelector';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
@@ -24,7 +22,6 @@ const QRCodeGenerator: React.FC = () => {
     backgroundColor: DEFAULT_QR_OPTIONS.backgroundColor || '#FFFFFF',
     cornerRadius: DEFAULT_QR_OPTIONS.cornerRadius || 0,
     safeScan: false,
-    style: 'standard' as QRStyleType,
   });
   
   const [isGenerating, setIsGenerating] = useState(false);
@@ -58,7 +55,6 @@ const QRCodeGenerator: React.FC = () => {
         color: qrOptions.color,
         backgroundColor: qrOptions.backgroundColor,
         cornerRadius: qrOptions.cornerRadius,
-        style: qrOptions.style,
       };
       
       const qrCodeImage = await generateQRCode(options);
@@ -95,7 +91,6 @@ const QRCodeGenerator: React.FC = () => {
         color: qrOptions.color,
         backgroundColor: qrOptions.backgroundColor,
         cornerRadius: qrOptions.cornerRadius,
-        style: qrOptions.style,
       };
       
       const qrCodeImage = await generateQRCode(options);

@@ -10,7 +10,6 @@ import ColorPicker from './ColorPicker';
 import ShapeSelector from './ShapeSelector';
 import SafeScanBadge from './SafeScanBadge';
 import DownloadOptions from './DownloadOptions';
-import QRStyleSelector, { QRStyleType } from './QRStyleSelector';
 
 interface CustomizationPanelProps {
   qrOptions: {
@@ -18,7 +17,6 @@ interface CustomizationPanelProps {
     backgroundColor: string;
     cornerRadius: number;
     safeScan: boolean;
-    style: QRStyleType;
   };
   onQrOptionsChange: (options: any) => void;
   onLogoChange: (logoUrl: string | null) => void;
@@ -57,11 +55,6 @@ const CustomizationPanel: React.FC<CustomizationPanelProps> = ({
 
         <div className="p-4">
           <TabsContent value="design" className="space-y-4 mt-0">
-            <QRStyleSelector
-              selectedStyle={qrOptions.style}
-              onChange={(style) => onQrOptionsChange({ ...qrOptions, style })}
-            />
-            <Separator className="my-3" />
             <ColorPicker
               label="QR Code Color"
               color={qrOptions.color}
