@@ -5,7 +5,7 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { cn } from '@/lib/utils';
 import { QrCode } from 'lucide-react';
 
-export type QRStyleType = 'standard';
+export type QRStyleType = 'standard' | 'dots' | 'rounded' | 'classy' | 'edge-cut' | 'frame-square' | 'frame-rounded' | 'frame-circle' | 'phone-frame' | 'device-frame';
 
 interface QRStyleSelectorProps {
   selectedStyle: QRStyleType;
@@ -30,6 +30,68 @@ const QRStyleSelector: React.FC<QRStyleSelectorProps> = ({
               i === 0 || i === 2 || i === 6 || i === 8 ? "rounded-none" : ""
             )}></div>
           ))}
+        </div>
+      )
+    },
+    { 
+      id: 'dots', 
+      label: 'Dots', 
+      icon: (
+        <div className="w-6 h-6 grid grid-cols-3 grid-rows-3 gap-0.5">
+          {[...Array(9)].map((_, i) => (
+            <div key={i} className="rounded-full bg-current"></div>
+          ))}
+        </div>
+      )
+    },
+    { 
+      id: 'rounded', 
+      label: 'Rounded', 
+      icon: (
+        <div className="w-6 h-6 grid grid-cols-3 grid-rows-3 gap-0.5">
+          {[...Array(9)].map((_, i) => (
+            <div key={i} className="rounded-md bg-current"></div>
+          ))}
+        </div>
+      )
+    },
+    { 
+      id: 'frame-square', 
+      label: 'Square Frame', 
+      icon: (
+        <div className="w-6 h-6 border-2 border-current flex items-center justify-center">
+          <div className="w-4 h-4 grid grid-cols-2 grid-rows-2 gap-0.5">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="bg-current"></div>
+            ))}
+          </div>
+        </div>
+      )
+    },
+    { 
+      id: 'frame-rounded', 
+      label: 'Rounded Frame', 
+      icon: (
+        <div className="w-6 h-6 border-2 border-current rounded-md flex items-center justify-center">
+          <div className="w-4 h-4 grid grid-cols-2 grid-rows-2 gap-0.5">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="bg-current"></div>
+            ))}
+          </div>
+        </div>
+      )
+    },
+    { 
+      id: 'device-frame', 
+      label: 'Device', 
+      icon: (
+        <div className="w-6 h-6 border-2 border-current rounded-md relative">
+          <div className="absolute top-0 w-2 h-0.5 bg-current rounded-full left-1/2 -translate-x-1/2"></div>
+          <div className="w-4 h-4 grid grid-cols-2 grid-rows-2 gap-0.5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="bg-current"></div>
+            ))}
+          </div>
         </div>
       )
     }

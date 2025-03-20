@@ -208,7 +208,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanResult, onBack }) => {
                 <video 
                   ref={videoRef}
                   playsInline 
-                  className={isCameraActive ? "w-full h-full object-cover" : "w-full h-full object-cover hidden"}
+                  className={cn("w-full h-full object-cover", { "hidden": !isCameraActive })}
                 />
                 <canvas 
                   ref={canvasRef} 
