@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -20,7 +19,6 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanResult, onBack }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   
-  // Initialize and start camera
   const startCamera = async () => {
     try {
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
@@ -53,7 +51,6 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanResult, onBack }) => {
     }
   };
   
-  // Stop camera stream
   const stopCamera = () => {
     if (videoRef.current && videoRef.current.srcObject) {
       const tracks = (videoRef.current.srcObject as MediaStream).getTracks();
@@ -63,7 +60,6 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanResult, onBack }) => {
     }
   };
   
-  // Scan QR code from camera feed
   const scanQRCodeFromCamera = async () => {
     if (!isCameraActive || !videoRef.current || !canvasRef.current) return;
 
@@ -73,7 +69,6 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanResult, onBack }) => {
     
     if (!context) return;
     
-    // Use dynamic import for jsQR for browser compatibility
     const jsQR = (await import('jsqr')).default;
     
     const scanFrame = () => {
@@ -90,21 +85,18 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanResult, onBack }) => {
       });
       
       if (code) {
-        // QR code detected
         toast.success('QR code detected!');
         stopCamera();
         onScanResult(code.data);
         return;
       }
       
-      // Continue scanning
       requestAnimationFrame(scanFrame);
     };
     
     requestAnimationFrame(scanFrame);
   };
   
-  // Handle file upload for QR scanning
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -112,13 +104,11 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanResult, onBack }) => {
     const jsQR = (await import('jsqr')).default;
     
     try {
-      // Create a new FileReader
       const reader = new FileReader();
       
       reader.onload = (e) => {
         const img = new Image();
         img.onload = () => {
-          // Create canvas and draw image
           const canvas = document.createElement('canvas');
           const context = canvas.getContext('2d');
           
@@ -131,7 +121,6 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanResult, onBack }) => {
           canvas.height = img.height;
           context.drawImage(img, 0, 0, img.width, img.height);
           
-          // Get image data and scan for QR code
           const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
           const code = jsQR(imageData.data, imageData.width, imageData.height, {
             inversionAttempts: "dontInvert",
@@ -218,7 +207,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanResult, onBack }) => {
                 <video 
                   ref={videoRef}
                   playsInline 
-                  className={isCameraActive ? "w-full h-full object-cover" : "w-full h-full object-cover hidden"} 
+                  className={`w-full h-full object-cover${!isCameraActive ? " hidden" : ""}`}
                 />
                 <canvas 
                   ref={canvasRef} 
