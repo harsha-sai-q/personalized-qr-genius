@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import QRScanner from '@/components/QRScanner';
 import { QrCode } from 'lucide-react';
 import { toast } from 'sonner';
+import { isValidUrl } from '@/lib/qr-utils';
 
 const ScanQR: React.FC = () => {
   const [scanResult, setScanResult] = useState<string | null>(null);
@@ -101,16 +102,6 @@ const ScanQR: React.FC = () => {
       </div>
     </div>
   );
-};
-
-// Helper function to check if string is a valid URL
-const isValidUrl = (url: string): boolean => {
-  try {
-    new URL(url);
-    return true;
-  } catch (e) {
-    return false;
-  }
 };
 
 export default ScanQR;
