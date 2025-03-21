@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -209,7 +208,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanResult, onBack }) => {
                   ref={videoRef} 
                   className={cn(
                     "w-full h-full object-cover",
-                    { hidden: !isCameraActive }
+                    isCameraActive ? "" : "hidden"
                   )} 
                 />
                 <canvas 
